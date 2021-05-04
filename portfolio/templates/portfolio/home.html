@@ -1,0 +1,48 @@
+{% extends 'portfolio/base.html' %} {% block content %}
+
+<h1 class="my-4">I am <span style="color: #198754">web</span> developer</h1>
+
+<h1 class="mb-4">
+  Its my Stupidly <br />
+  simple <span style="color: #198754">Portfolio</span>
+</h1>
+
+{% load static %}
+
+<img
+  src="{% static 'portfolio/images/iam.jpg' %}"
+  class="profile-image"
+  loading="lazy"
+  galleryimg="no"
+  oncontextmenu="return false"
+  ondragstart="return false"
+  onselectstart="return false"
+/>
+
+<h1 class="mb-3">My Projects</h1>
+<div class="projects">
+  {% for project in projects %}
+
+  <div class="card">
+    <img src="{{project.image.url}}" class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title">{{project.title}}</h5>
+      <p class="card-text">{{project.description}}</p>
+      <div class="links">
+        <a
+          target="_blank"
+          href="{{ project.github }}"
+          class="btn btn-outline-success"
+          >Source</a
+        >
+        <a target="_blank" href="{{ project.url }}" class="btn btn-success"
+          >View</a
+        >
+      </div>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+
+{% endblock content %}

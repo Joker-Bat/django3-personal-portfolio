@@ -1,0 +1,26 @@
+{% extends 'portfolio/base.html' %} {% block content %}
+<div class="blogs">
+  <h1>Blogs</h1>
+
+  <h2 class="blog_count">
+    <span style="color: #198754">SilverDev</span>
+    has written {{ blogs.count }} blog{{ blogs.count |pluralize }}
+  </h2>
+  <div class="allblogs">
+    {% for blog in blogs %}
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">
+          <a href="{% url 'blog:detail' blog.id %}">{{blog.title}}</a>
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+          {{blog.date | date:'M d Y'}}
+        </h6>
+        <p class="card-text">{{blog.description|striptags|truncatechars:50}}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}
